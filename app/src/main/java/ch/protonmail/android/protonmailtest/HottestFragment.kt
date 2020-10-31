@@ -21,12 +21,12 @@ class HottestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_hottest, container, false)
 
-        val layoutManager = LinearLayoutManager(context)
-        val adapter = ForecastAdapter()
-        val recycler = rootView.findViewById<RecyclerView>(R.id.recycler_view)
-        recycler.adapter = adapter
-        recycler.layoutManager = layoutManager
-        fetchData()
+//        val layoutManager = LinearLayoutManager(context)
+//        val adapter = ForecastAdapter()
+//        val recycler = rootView.findViewById<RecyclerView>(R.id.recycler_view)
+//        recycler.adapter = adapter
+//        recycler.layoutManager = layoutManager
+//        fetchData()
         return rootView
     }
 

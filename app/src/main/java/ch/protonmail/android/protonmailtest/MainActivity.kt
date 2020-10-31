@@ -1,23 +1,20 @@
 package ch.protonmail.android.protonmailtest
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : AppCompatActivity() {
 
-    @SuppressLint("WrongConstant")
+    private var navController: NavController? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pager = findViewById<ViewPager>(R.id.pager)
-        val adapter = TabsAdapter(this, supportFragmentManager)
-        pager.adapter = adapter
-    }
-
-    fun initTabs() {
-
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHost.navController
     }
 }

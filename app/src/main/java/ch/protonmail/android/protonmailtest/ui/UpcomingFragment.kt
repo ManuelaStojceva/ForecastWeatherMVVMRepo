@@ -1,4 +1,4 @@
-package ch.protonmail.android.protonmailtest
+package ch.protonmail.android.protonmailtest.ui
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ch.protonmail.android.protonmailtest.ForecastAdapter
+import ch.protonmail.android.protonmailtest.R
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -21,12 +23,12 @@ class UpcomingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_hottest, container, false)
 
-        val layoutManager = LinearLayoutManager(context)
-        val adapter = ForecastAdapter()
-        val recycler = rootView.findViewById<RecyclerView>(R.id.recycler_view)
-        recycler.adapter = adapter
-        recycler.layoutManager = layoutManager
-        fetchData()
+//        val layoutManager = LinearLayoutManager(context)
+//        val adapter = ForecastAdapter()
+//        val recycler = rootView.findViewById<RecyclerView>(R.id.recycler_view)
+//        recycler.adapter = adapter
+//        recycler.layoutManager = layoutManager
+//        fetchData()
 
         return rootView
     }
@@ -40,7 +42,8 @@ class UpcomingFragment : Fragment() {
     }
 
     fun fetchDataFromServer() {
-        FetchDataFromServerTask().execute()
+        FetchDataFromServerTask()
+            .execute()
     }
 
     fun fetchDataFromLocalStorage(): Array<String>? {

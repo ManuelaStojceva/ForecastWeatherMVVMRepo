@@ -2,4 +2,6 @@
     <string name="app_name">ProtonMailTest</string>
 
     <string name="error_network_connection">Could not connect to server, please check your network connection</string>
+    <string name="tab_forecast">Forecast</string>
+    <string name="tab_hottest">Hottest</string>
 </resources>
