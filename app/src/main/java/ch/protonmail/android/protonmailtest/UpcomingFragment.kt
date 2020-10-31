@@ -33,9 +33,9 @@ class UpcomingFragment : Fragment() {
 
     fun fetchData() {
         if (dataPresentInLocalStorage()) {
-            fetchDataFromLocalStorage()
+            //fetchDataFromLocalStorage()
         } else {
-            fetchDataFromServer()
+            //fetchDataFromServer()
         }
     }
 
@@ -48,7 +48,7 @@ class UpcomingFragment : Fragment() {
         return null
     }
 
-    fun dataPresentInLocalStorage(): Boolean = true
+    fun dataPresentInLocalStorage(): Boolean = false
 
     class FetchDataFromServerTask : AsyncTask<String, String, String>() {
         override fun doInBackground(vararg p0: String?): String {

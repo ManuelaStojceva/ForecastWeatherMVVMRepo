@@ -18,6 +18,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initTabs() {
-        //TODO
+
     }
 }

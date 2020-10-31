@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.0"
     defaultConfig {
         applicationId "ch.protonmail.android.protonmailtest"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -29,7 +29,7 @@ android {
     productFlavors {
         dev{
             rootUrl = "https://5c5c8ba58d018a0014aa1b24.mockapi.io"
-            buildConfigField "String", "BASE_URL", "\"" + rootUrl + "/api/forecast\""
+            buildConfigField "String", "BASE_URL", "\"" + rootUrl + "/api/\""
             dimension "mode"
         }
     }
