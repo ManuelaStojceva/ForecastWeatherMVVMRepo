@@ -7,6 +7,9 @@ import ch.protonmail.android.protonmailtest.R
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/*
+   interceptor that will request and create HTTP request and handler using retrofit
+ */
 class NetworkConnectionInterceptor(context: Context) : Interceptor {
     private val appContext = context.applicationContext
     override fun intercept(chain: Interceptor.Chain): Response {

@@ -4,6 +4,11 @@ import android.util.Log
 import okio.IOException
 import retrofit2.Response
 
+/*
+Class to handle the safe API calls
+-two suspending higher-order functions. Both take a suspending function that returns a response
+and an error message that will be displayed when an error occurs.
+ */
 abstract class SafeApiRequest {
     suspend fun <T : Any> safeApiCall(call : suspend()-> Response<T>, error : String) :  T?{
         val result = handleApiOutput(call, error)
