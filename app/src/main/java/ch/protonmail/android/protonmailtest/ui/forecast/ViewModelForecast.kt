@@ -1,4 +1,4 @@
-package ch.protonmail.android.protonmailtest.ui
+package ch.protonmail.android.protonmailtest.ui.forecast
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ch.protonmail.android.protonmailtest.api.NoInternetException
 import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
-import ch.protonmail.android.protonmailtest.ui.repository.RepositoryForecast
+import ch.protonmail.android.protonmailtest.ui.forecast.repository.RepositoryForecast
 import kotlinx.coroutines.launch
 
 class ViewModelForecast(private val repository: RepositoryForecast) :ViewModel(){
@@ -15,6 +15,14 @@ class ViewModelForecast(private val repository: RepositoryForecast) :ViewModel()
     val upcomingDayList : LiveData<List<GetUpcomingDayListResponseItem>> = _upcomingDayList
     private var _errorMessage : MutableLiveData<String> = MutableLiveData()
     val errorMessage : LiveData<String> = _errorMessage
+
+    //detail view data
+    private var _upcomingDayDetail : MutableLiveData<GetUpcomingDayListResponseItem> = MutableLiveData()
+    val upcomingDayDetail : LiveData<GetUpcomingDayListResponseItem> = _upcomingDayDetail
+
+    fun setDetailData(data : GetUpcomingDayListResponseItem){
+        _upcomingDayDetail.value = data
+    }
 
     fun getUpcomingDayList(){
         viewModelScope.launch {

@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="viewmodel"
-                type="ch.protonmail.android.protonmailtest.ui.ViewModelForecast" />
+                type="ch.protonmail.android.protonmailtest.ui.forecast.ViewModelForecast" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"

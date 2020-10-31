@@ -1,4 +1,4 @@
-package ch.protonmail.android.protonmailtest.ui.repository
+package ch.protonmail.android.protonmailtest.ui.forecast.repository
 
 import ch.protonmail.android.protonmailtest.api.ApiService
 import ch.protonmail.android.protonmailtest.api.SafeApiRequest

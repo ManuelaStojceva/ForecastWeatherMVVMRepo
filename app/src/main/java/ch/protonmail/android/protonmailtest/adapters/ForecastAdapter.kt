@@ -23,6 +23,7 @@ class ForecastAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
+        holder.binding.root.setOnClickListener { listener.onItemClick(item) }
     }
     override fun getObjForPosition(position: Int): Any {
         return data[position]

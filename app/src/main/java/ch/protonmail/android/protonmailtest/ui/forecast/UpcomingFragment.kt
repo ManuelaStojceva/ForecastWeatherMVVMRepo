@@ -1,24 +1,26 @@
-package ch.protonmail.android.protonmailtest.ui
+package ch.protonmail.android.protonmailtest.ui.forecast
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import ch.protonmail.android.protonmailtest.Constants
 import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.adapters.SettingsBindingAdapter
 import ch.protonmail.android.protonmailtest.databinding.FragmentUpcomingBinding
 import ch.protonmail.android.protonmailtest.interfaces.ForecastDataInterface
+import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
 import ch.protonmail.android.protonmailtest.widgets.displayInfoMsg
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.net.HttpURLConnection
-import java.net.URL
 
 /**
  * Created by ProtonMail on 2/25/19.
+ * changed by MAnuela Stojcheva on 10/31/2020
  * Shows the upcoming list of days returned by the API in order of day
  **/
 class UpcomingFragment : Fragment(), ForecastDataInterface {
@@ -41,7 +43,12 @@ class UpcomingFragment : Fragment(), ForecastDataInterface {
 
     }
 
-    override fun onItemClick() {
+    override fun onItemClick(data : GetUpcomingDayListResponseItem) {
+        navigateToDetailPage(data)
+    }
 
+    private fun navigateToDetailPage(data: GetUpcomingDayListResponseItem) {
+        val bundle = bundleOf(Constants.bundleDetailData to data)
+        findNavController().navigate(R.id.navigation_to_detail, bundle)
     }
 }

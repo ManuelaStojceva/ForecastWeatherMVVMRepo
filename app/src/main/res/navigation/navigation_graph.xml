@@ -8,6 +8,13 @@
             android:id="@+id/navigation_main"
             android:name="ch.protonmail.android.protonmailtest.ui.main.PagerViewFragment"
             tools:layout="@layout/activity_main">
+        <action
+                android:id="@+id/action_navigation_main_to_navigation_to_detail"
+                app:destination="@id/navigation_to_detail" />
     </fragment>
-
+    <fragment
+            android:id="@+id/navigation_to_detail"
+            android:name="ch.protonmail.android.protonmailtest.ui.forecast.DetailFragment"
+            tools:layout="@layout/fragment_details">
+    </fragment>
 </navigation>

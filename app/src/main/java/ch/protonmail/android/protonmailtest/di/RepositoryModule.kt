@@ -2,8 +2,8 @@ package ch.protonmail.android.protonmailtest.di
 
 import ch.protonmail.android.protonmailtest.api.ApiService
 import ch.protonmail.android.protonmailtest.db.ForecastDao
-import ch.protonmail.android.protonmailtest.ui.repository.RepositoryForecast
-import ch.protonmail.android.protonmailtest.ui.repository.RepositoryForecastImpl
+import ch.protonmail.android.protonmailtest.ui.forecast.repository.RepositoryForecast
+import ch.protonmail.android.protonmailtest.ui.forecast.repository.RepositoryForecastImpl
 import org.koin.dsl.module
 
 //pattern to tell Koin how to build repository module
