@@ -9,7 +9,6 @@ import ch.protonmail.android.protonmailtest.HottestFragment
 import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.adapters.TabsAdapter
 import ch.protonmail.android.protonmailtest.ui.UpcomingFragment
-import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_view_pager.*
 
 class PagerViewFragment : Fragment() {

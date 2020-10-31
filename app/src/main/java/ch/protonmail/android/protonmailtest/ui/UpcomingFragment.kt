@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ch.protonmail.android.protonmailtest.ForecastAdapter
+import androidx.lifecycle.Observer
 import ch.protonmail.android.protonmailtest.R
+import ch.protonmail.android.protonmailtest.adapters.SettingsBindingAdapter
+import ch.protonmail.android.protonmailtest.databinding.FragmentUpcomingBinding
+import ch.protonmail.android.protonmailtest.interfaces.ForecastDataInterface
+import ch.protonmail.android.protonmailtest.widgets.displayInfoMsg
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -17,55 +21,27 @@ import java.net.URL
  * Created by ProtonMail on 2/25/19.
  * Shows the upcoming list of days returned by the API in order of day
  **/
-class UpcomingFragment : Fragment() {
+class UpcomingFragment : Fragment(), ForecastDataInterface {
+    private val viewModel by viewModel<ViewModelForecast>()
 
-    // TODO: Please fix any errors and implement the missing parts (including any UI changes)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_hottest, container, false)
-
-//        val layoutManager = LinearLayoutManager(context)
-//        val adapter = ForecastAdapter()
-//        val recycler = rootView.findViewById<RecyclerView>(R.id.recycler_view)
-//        recycler.adapter = adapter
-//        recycler.layoutManager = layoutManager
-//        fetchData()
-
-        return rootView
+        SettingsBindingAdapter.listener = this
+        val binding : FragmentUpcomingBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_upcoming, container, false)
+        binding.viewmodel= viewModel
+        binding.lifecycleOwner = this
+        return binding.root
     }
 
-    fun fetchData() {
-        if (dataPresentInLocalStorage()) {
-            //fetchDataFromLocalStorage()
-        } else {
-            //fetchDataFromServer()
-        }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.getUpcomingDayList()
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error->
+            context?.displayInfoMsg(error)
+        })
+
     }
 
-    fun fetchDataFromServer() {
-        FetchDataFromServerTask()
-            .execute()
-    }
+    override fun onItemClick() {
 
-    fun fetchDataFromLocalStorage(): Array<String>? {
-        // TODO implement
-        return null
-    }
-
-    fun dataPresentInLocalStorage(): Boolean = false
-
-    class FetchDataFromServerTask : AsyncTask<String, String, String>() {
-        override fun doInBackground(vararg p0: String?): String {
-            val url = URL("https://5c5c8ba58d018a0014aa1b24.mockapi.io/api/forecast")
-            val httpURLConnection = url.openConnection() as HttpURLConnection
-            httpURLConnection.connect()
-
-            val responseCode: Int = httpURLConnection.responseCode
-
-            var response: String = ""
-            if (responseCode == 200) {
-                response = httpURLConnection.responseMessage
-            }
-            return response
-        }
     }
 }

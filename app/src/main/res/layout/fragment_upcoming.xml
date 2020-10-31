@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:scrollbars="vertical"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="viewmodel"
+                type="ch.protonmail.android.protonmailtest.ui.ViewModelForecast" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                style="@style/RecycleViewStyle"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:forecastData="@{viewmodel.upcomingDayList}"
+                tools:listitem="@layout/item_forecast"/>
+
+    </LinearLayout>
+</layout>
