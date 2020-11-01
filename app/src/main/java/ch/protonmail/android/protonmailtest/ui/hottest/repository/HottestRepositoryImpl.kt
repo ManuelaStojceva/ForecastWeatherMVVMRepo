@@ -7,6 +7,9 @@ import ch.protonmail.android.protonmailtest.models.GetLessRainingOrderedDaysResp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/*
+  repository class to handle hottest network and local storage data
+ */
 class HottestRepositoryImpl(
     private val apiService: ApiService,
     private val dao: HottestDao

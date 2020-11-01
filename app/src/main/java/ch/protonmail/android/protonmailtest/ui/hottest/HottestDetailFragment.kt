@@ -12,6 +12,9 @@ import ch.protonmail.android.protonmailtest.databinding.HottestDetailLayoutBindi
 import ch.protonmail.android.protonmailtest.models.GetLessRainingOrderedDaysResponseItem
 import org.koin.android.viewmodel.ext.android.viewModel
 
+/*
+ fragment to display detail hottest data
+ */
 class HottestDetailFragment : Fragment() {
 
     private val viewModel by viewModel<ViewModelHottest>()

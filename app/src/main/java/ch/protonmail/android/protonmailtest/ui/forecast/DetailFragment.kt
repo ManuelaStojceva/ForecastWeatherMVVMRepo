@@ -11,7 +11,9 @@ import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.databinding.FragmentDetailsBinding
 import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
 import org.koin.android.viewmodel.ext.android.viewModel
-
+/*
+ fragment to display detail forecast data
+ */
 class DetailFragment : Fragment() {
 
     private val viewModel by viewModel<ViewModelForecast>()

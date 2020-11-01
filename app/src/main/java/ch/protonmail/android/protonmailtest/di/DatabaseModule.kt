@@ -8,7 +8,7 @@ import ch.protonmail.android.protonmailtest.db.HottestDao
 import ch.protonmail.android.protonmailtest.db.HottestDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
-
+//pattern to tell Koin how to build database module
 val databaseModule = module {
 
     fun provideForecastDatabase(application: Application): ForecastDatabase {

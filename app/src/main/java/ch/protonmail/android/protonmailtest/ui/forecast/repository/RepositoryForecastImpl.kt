@@ -7,6 +7,9 @@ import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseIte
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/*
+  repository class to handle forecast network and local storage data
+ */
 class RepositoryForecastImpl(
     private val apiService: ApiService,
     private val dao: ForecastDao

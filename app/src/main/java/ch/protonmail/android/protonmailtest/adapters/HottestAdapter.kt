@@ -8,6 +8,10 @@ import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.interfaces.HottestDataInterface
 import ch.protonmail.android.protonmailtest.models.GetLessRainingOrderedDaysResponseItem
 
+/*
+   adapter to display days that have less than a 50% chance of rain, ordered hottest to coldest
+ */
+
 class HottestAdapter(
     private val data : List<GetLessRainingOrderedDaysResponseItem>,
     private val layoutId : Int,

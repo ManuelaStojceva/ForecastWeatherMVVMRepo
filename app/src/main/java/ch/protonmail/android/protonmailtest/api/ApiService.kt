@@ -5,6 +5,9 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
+/*
+ interface for API calls / network data using retrofit library
+ */
 interface ApiService {
 
     //fetches upcoming list of days

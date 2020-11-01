@@ -7,7 +7,9 @@ import androidx.databinding.ViewDataBinding
 import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.interfaces.ForecastDataInterface
 import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
-
+/*
+ adapter to display a forecast list of days returned by the API in order of day
+ */
 class ForecastAdapter(
     private val data : List<GetUpcomingDayListResponseItem>,
     private val layoutId : Int,

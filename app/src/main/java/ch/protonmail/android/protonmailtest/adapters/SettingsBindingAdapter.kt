@@ -14,6 +14,9 @@ import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
+/*
+  adapter used in data binding (one way and two way data binding)
+ */
 object SettingsBindingAdapter {
     var listener : ForecastDataInterface? = null
     var hottestListener : HottestDataInterface? = null
