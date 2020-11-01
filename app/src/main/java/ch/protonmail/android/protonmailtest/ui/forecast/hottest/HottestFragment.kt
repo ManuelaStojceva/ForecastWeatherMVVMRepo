@@ -1,4 +1,4 @@
-package ch.protonmail.android.protonmailtest
+package ch.protonmail.android.protonmailtest.ui.forecast.hottest
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import ch.protonmail.android.protonmailtest.R
 import java.net.HttpURLConnection
 import java.net.URL
 
 /**
  * Created by ProtonMail on 2/25/19.
+ * changed by MAnuela Stojcheva on 11/1/2020
  * Shows any days that have less than a 50% chance of rain, ordered hottest to coldest
  * */
 class HottestFragment : Fragment() {
@@ -39,7 +39,8 @@ class HottestFragment : Fragment() {
     }
 
     fun fetchDataFromServer() {
-        FetchDataFromServerTask().execute()
+        FetchDataFromServerTask()
+            .execute()
     }
 
     fun fetchDataFromLocalStorage(): Array<String>? {

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ch.protonmail.android.protonmailtest.HottestFragment
+import ch.protonmail.android.protonmailtest.ui.forecast.hottest.HottestFragment
 import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.adapters.TabsAdapter
 import ch.protonmail.android.protonmailtest.ui.forecast.UpcomingFragment
