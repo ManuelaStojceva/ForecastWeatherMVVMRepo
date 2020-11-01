@@ -9,6 +9,8 @@ import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.interfaces.ForecastDataInterface
 import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 object SettingsBindingAdapter {
     var listener : ForecastDataInterface? = null
@@ -48,5 +50,40 @@ object SettingsBindingAdapter {
         day?.let {
             textView.text = textView.context.getString(R.string.text_upcoming_day, it)
         }
+    }
+    @BindingAdapter("sunrisesunset")
+    @JvmStatic
+    fun setSunriseAndSunset(textView: TextView, timestamp : Long?){
+        timestamp?.let {
+            textView.text = convertTimestampToLocalTime(it)
+        }
+    }
+    private fun convertTimestampToLocalTime(timestamp : Long):String{
+        val cal: Calendar = Calendar.getInstance()
+        val tz: TimeZone = cal.timeZone
+
+        val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        sdf.timeZone = tz
+
+        return sdf.format(Date(timestamp*1000))
+    }
+    @BindingAdapter("rain")
+    @JvmStatic
+    fun setRainAbility(textView: TextView, rain : Float?){
+        rain?.let {
+            textView.text = textView.context.getString(R.string.text_chance_rain, toPercentage(it))
+        }
+    }
+    private fun toPercentage(n: Float): String? {
+        return String.format("%.0f", n * 100) + "%"
+    }
+    @BindingAdapter(value = ["hightemp", "lowtemp"])
+    @JvmStatic
+    fun setTemperatureText(textView: TextView, high : Int?, low : Int?){
+       high?.let { hTemp->
+           low?.let { lTemp->
+               textView.text = textView.context.getString(R.string.text_weather_temperature, lTemp.toString(), hTemp.toString())
+           }
+       }
     }
 }

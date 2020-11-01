@@ -9,12 +9,12 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class GetUpcomingDayListResponseItem(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    val chance_rain: Double?,
+    val chance_rain: Float?,
     val day: String?,
     val description: String?,
     val high: Int?,
     val image: String?,
     val low: Int?,
-    val sunrise: Int?,
-    val sunset: Int?
+    val sunrise: Long?,
+    val sunset: Long?
 ) : Parcelable

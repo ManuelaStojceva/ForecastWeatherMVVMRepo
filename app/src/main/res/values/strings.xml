@@ -6,4 +6,8 @@
     <string name="tab_hottest">Hottest</string>
     <string name="button_text_ok">OK</string>
     <string name="text_upcoming_day">Day: %1$s</string>
+    <string name="text_sunrise">sunrise:</string>
+    <string name="text_sunset">sunset:</string>
+    <string name="text_chance_rain">%1$s chance of rain</string>
+    <string name="text_weather_temperature">Temperature: %1$s °C / %2$s °C</string>
 </resources>
