@@ -4,6 +4,10 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
+def keystorePropertiesFile = rootProject.file("keystore.properties");
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
@@ -15,22 +19,43 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    signingConfigs {
+        releaseConfig {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
         }
     }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     buildFeatures {
         dataBinding = true
     }
+    
     flavorDimensions "mode"
     def rootUrl = null
+    def myApiKey = appkey
     productFlavors {
         dev{
-            rootUrl = "https://5c5c8ba58d018a0014aa1b24.mockapi.io"
-            buildConfigField "String", "BASE_URL", "\"" + rootUrl + "/api/\""
+            rootUrl = "https://" + myApiKey
+            buildConfigField "String", "BASE_URL", "\"" + rootUrl + ".mockapi.io/api/\""
             dimension "mode"
+            applicationId "ch.protonmail.android.protonmailtest"
+            signingConfig signingConfigs.releaseConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles 'proguard-rules.pro'
         }
     }
 }
