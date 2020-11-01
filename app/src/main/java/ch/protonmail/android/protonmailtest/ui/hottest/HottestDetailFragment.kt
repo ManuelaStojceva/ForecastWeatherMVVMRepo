@@ -1,4 +1,4 @@
-package ch.protonmail.android.protonmailtest.ui.forecast
+package ch.protonmail.android.protonmailtest.ui.hottest
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import ch.protonmail.android.protonmailtest.Constants
 import ch.protonmail.android.protonmailtest.R
-import ch.protonmail.android.protonmailtest.databinding.FragmentDetailsBinding
-import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
+import ch.protonmail.android.protonmailtest.databinding.HottestDetailLayoutBinding
+import ch.protonmail.android.protonmailtest.models.GetLessRainingOrderedDaysResponseItem
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class DetailFragment : Fragment() {
+class HottestDetailFragment : Fragment() {
 
-    private val viewModel by viewModel<ViewModelForecast>()
-    private var detailData : GetUpcomingDayListResponseItem? = null
+    private val viewModel by viewModel<ViewModelHottest>()
+    private var detailData : GetLessRainingOrderedDaysResponseItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let { arg->
-            detailData = arg.getParcelable(Constants.EXTRA_FORECAST_DETAIL_DATA)
+            detailData = arg.getParcelable(Constants.EXTRA_HOTTEST_DETAIL_DATA)
         }
         detailData?.let { data-> viewModel.setDetailData(data) }
     }
@@ -30,7 +30,7 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding : FragmentDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
+        val binding : HottestDetailLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.hottest_detail_layout, container, false)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
         return binding.root

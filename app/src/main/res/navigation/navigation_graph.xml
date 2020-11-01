@@ -11,10 +11,18 @@
         <action
                 android:id="@+id/action_navigation_main_to_navigation_to_detail"
                 app:destination="@id/navigation_to_detail" />
+        <action
+                android:id="@+id/action_navigation_main_to_navigation_to_hottest_detail"
+                app:destination="@id/navigation_to_hottest_detail" />
     </fragment>
     <fragment
             android:id="@+id/navigation_to_detail"
             android:name="ch.protonmail.android.protonmailtest.ui.forecast.DetailFragment"
             tools:layout="@layout/fragment_details">
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_to_hottest_detail"
+            android:name="ch.protonmail.android.protonmailtest.ui.hottest.HottestDetailFragment"
+            tools:layout="@layout/hottest_detail_layout">
     </fragment>
 </navigation>

@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.interfaces.ForecastDataInterface
+import ch.protonmail.android.protonmailtest.interfaces.HottestDataInterface
+import ch.protonmail.android.protonmailtest.models.GetLessRainingOrderedDaysResponseItem
 import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
@@ -14,6 +16,7 @@ import java.util.*
 
 object SettingsBindingAdapter {
     var listener : ForecastDataInterface? = null
+    var hottestListener : HottestDataInterface? = null
 
     @BindingAdapter("forecastData")
     @JvmStatic
@@ -85,5 +88,20 @@ object SettingsBindingAdapter {
                textView.text = textView.context.getString(R.string.text_weather_temperature, lTemp.toString(), hTemp.toString())
            }
        }
+    }
+
+    @BindingAdapter("hottestData")
+    @JvmStatic
+    fun bindHottestData(recyclerView: RecyclerView, data : List<GetLessRainingOrderedDaysResponseItem>?){
+        recyclerView.adapter = data?.let { hottestListener?.let { it1 ->
+            data.let { it2 ->
+                HottestAdapter(
+                    it2,  R.layout.item_forecast,
+                    it1
+                ).apply {
+                    setViewDivider(recyclerView)
+                    notifyDataSetChanged() }
+            }
+        } }
     }
 }

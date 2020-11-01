@@ -1,4 +1,4 @@
-package ch.protonmail.android.protonmailtest.ui.forecast
+package ch.protonmail.android.protonmailtest.ui.hottest
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,44 +12,44 @@ import androidx.navigation.fragment.findNavController
 import ch.protonmail.android.protonmailtest.Constants
 import ch.protonmail.android.protonmailtest.R
 import ch.protonmail.android.protonmailtest.adapters.SettingsBindingAdapter
-import ch.protonmail.android.protonmailtest.databinding.FragmentUpcomingBinding
-import ch.protonmail.android.protonmailtest.interfaces.ForecastDataInterface
-import ch.protonmail.android.protonmailtest.models.GetUpcomingDayListResponseItem
+import ch.protonmail.android.protonmailtest.databinding.FragmentHottestBinding
+import ch.protonmail.android.protonmailtest.interfaces.HottestDataInterface
+import ch.protonmail.android.protonmailtest.models.GetLessRainingOrderedDaysResponseItem
 import ch.protonmail.android.protonmailtest.widgets.displayInfoMsg
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Created by ProtonMail on 2/25/19.
- * changed by MAnuela Stojcheva on 10/31/2020
- * Shows the upcoming list of days returned by the API in order of day
- **/
-class UpcomingFragment : Fragment(), ForecastDataInterface {
-    private val viewModel by viewModel<ViewModelForecast>()
+ * changed by MAnuela Stojcheva on 11/1/2020
+ * Shows any days that have less than a 50% chance of rain, ordered hottest to coldest
+ * */
+class HottestFragment : Fragment(), HottestDataInterface {
+
+    private val viewModel by viewModel<ViewModelHottest>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        SettingsBindingAdapter.listener = this
-        val binding : FragmentUpcomingBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_upcoming, container, false)
-        binding.viewmodel= viewModel
+        SettingsBindingAdapter.hottestListener = this
+        val binding : FragmentHottestBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hottest, container, false)
+        binding.viewmodel = viewModel
         binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getUpcomingDayList()
+        viewModel.getDaysLessChangeOfRainOrderedByHottest()
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error->
             context?.displayInfoMsg(error)
         })
 
     }
 
-    override fun onItemClick(data : GetUpcomingDayListResponseItem) {
+    override fun onHottestItemClick(data: GetLessRainingOrderedDaysResponseItem) {
         navigateToDetailPage(data)
     }
 
-
-    private fun navigateToDetailPage(data: GetUpcomingDayListResponseItem) {
-        val bundle = bundleOf(Constants.EXTRA_FORECAST_DETAIL_DATA to data)
-        findNavController().navigate(R.id.navigation_to_detail, bundle)
+    private fun navigateToDetailPage(data: GetLessRainingOrderedDaysResponseItem) {
+        val bundle = bundleOf(Constants.EXTRA_HOTTEST_DETAIL_DATA to data)
+        findNavController().navigate(R.id.navigation_to_hottest_detail, bundle)
     }
 }

@@ -19,8 +19,7 @@ class RepositoryForecastImpl(
             call = {apiService.getUpcomingDayList()},
             error = "Error fetching Data"
         )
-        if(!response.isNullOrEmpty())
-            addDataToLocalStorage(response)
+        if(!response.isNullOrEmpty()) addDataToLocalStorage(response)
         return response
     }
 
